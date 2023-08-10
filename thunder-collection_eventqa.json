@@ -1,0 +1,103 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "eventqa",
+    "dateExported": "2023-08-10T11:04:01.216Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "819bbe93-5d27-4963-ba74-3e96f3f8113c",
+            "colId": "5ce77667-ea77-473a-b291-d1da58263ed5",
+            "containerId": "",
+            "name": "GET ALL EVENTS",
+            "url": "http://localhost:3000/api/v1/events",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-08-10T10:45:49.520Z",
+            "modified": "2023-08-10T10:45:49.520Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "aa67b0d7-2b48-4f15-a3a8-e3c23ad0ab2a",
+            "colId": "5ce77667-ea77-473a-b291-d1da58263ed5",
+            "containerId": "",
+            "name": "GET EVENT BY SLUG FAIL",
+            "url": "http://localhost:3000/api/v1/events/cll50ickl0009kptj5h7857u7",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-08-10T10:46:07.500Z",
+            "modified": "2023-08-10T10:51:14.713Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bd0cd0a5-972c-4ecb-afab-13ba4da62c93",
+            "colId": "5ce77667-ea77-473a-b291-d1da58263ed5",
+            "containerId": "",
+            "name": "GET EVENT BY SLUG SUCCESS",
+            "url": "http://localhost:3000/api/v1/events/cll50ickl000akptjmti03hjj",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-08-10T10:47:12.799Z",
+            "modified": "2023-08-10T10:50:56.589Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ef1274b6-0143-415c-baf8-88bfdbe6a64d",
+            "colId": "5ce77667-ea77-473a-b291-d1da58263ed5",
+            "containerId": "",
+            "name": "CREATE EVENT",
+            "url": "http://localhost:3000/api/v1/events",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-08-10T10:47:46.790Z",
+            "modified": "2023-08-10T10:49:43.579Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"event-1\",\n  \"description\":\"This is a sample event created in thunderCLIENT\",\n  \"startTime\":\"2023-08-10T10:49:20.688Z\",\n  \"duration\":\"45\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7bb3ae41-eb67-47c2-be7c-c472b2df0a2a",
+            "colId": "5ce77667-ea77-473a-b291-d1da58263ed5",
+            "containerId": "",
+            "name": "GET DISCUSSIONS FOR AN EVENT",
+            "url": "http://localhost:3000/api/v1/events/cll50ickl000akptjmti03hjj/discussion",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-08-10T10:50:03.570Z",
+            "modified": "2023-08-10T10:50:37.554Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ddf03a12-bbf0-404d-8723-b6745a446e84",
+            "colId": "5ce77667-ea77-473a-b291-d1da58263ed5",
+            "containerId": "",
+            "name": "ASK QUESTION",
+            "url": "http://localhost:3000/api/v1/events/cll50ickl000akptjmti03hjj/discussion",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-08-10T10:51:29.499Z",
+            "modified": "2023-08-10T10:52:47.447Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Sample title\",\n  \"description\":\"From THuNDERCLIENT\",\n  \"userName\":\"thunderClient\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
