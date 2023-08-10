@@ -21,7 +21,15 @@ https://www.loom.com/share/ce0c2ed18ba34931bced5d11f45849c5?sid=89472300-cc90-44
 - After installation run `pnpm dev` to start a development server
 - There you have it!🚀
 
+### About tech
+I've used:
+- NextjS-13 : for faster API-Application deployment in a single-codebase. I also chose it cos, it can be deployed very easily withoujt worrying about cors errors
+- Tailwind : Trust me, its better than vanilla-css!
+- ShadCN-ui : An opinionated copy-paste UI component-library
+
+  
 ### What's coming up?
 
 - [x] API tests
 - [x] Bug fixed about event-creation
+
