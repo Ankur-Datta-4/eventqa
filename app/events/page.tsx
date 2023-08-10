@@ -1,7 +1,9 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import useEvents from "@/lib/hooks/use-events";
 import { handleDateDefaultValue } from "@/lib/utils";
+import Link from "next/link";
 
 export default function EventsPage() {
   const { events, isLoading, isError, mutate } = useEvents();
@@ -15,8 +17,13 @@ export default function EventsPage() {
   }
   return (
     <div className="h-screen w-full">
-      <div className="max-w-7xl flex flex-col p-8 md:px-20 gap-8">
-        <h1 className="text-3xl font-semibold mb-8">All Events</h1>
+      <div className="flex flex-col p-8 md:px-20 gap-8">
+        <div className="flex justify-between">
+          <h1 className="text-3xl font-semibold mb-8">All Events</h1>
+          <Link href={`/events/create`} passHref>
+            <Button>+ Event</Button>
+          </Link>
+        </div>
         {events.length === 0 && (
           <div className="flex justify-center w-full items-center">
             <p className="text-2xl">No events found</p>
