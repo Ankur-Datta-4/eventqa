@@ -11,21 +11,27 @@ datasource db {
 }
 
 model Event {
-  id          String     @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   description String
-  slug        String     @default(cuid())
-  startTime   DateTime   @default(now())
-  duration    Int        @default(1)
-  expireTime  DateTime   @default(now())
-  question    question[]
+  slug        String    @unique @default(cuid())
+  startTime   DateTime  @default(now())
+  duration    Int       @default(1)
+  expireTime  DateTime  @default(now())
+  discussion  threads[]
 }
 
-model question {
-  id        String   @id @default(cuid())
-  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  eventId   String
-  text      String
-  createdAt DateTime @default(now())
-  userName  String
+model threads {
+  id           String    @id @default(cuid())
+  event        Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId      String
+  title        String
+  description  String?
+  upvote       Int       @default(0)
+  downvote     Int       @default(0)
+  parentThread threads?  @relation("childThread", fields: [parentId], references: [id])
+  parentId     String?
+  createdAt    DateTime  @default(now())
+  userName     String
+  threads      threads[] @relation("childThread")
 }

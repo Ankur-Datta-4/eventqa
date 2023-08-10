@@ -30,20 +30,19 @@ export default function EventsPage() {
           </div>
         )}
         {events.map((event: any, index: any) => (
-          <div
-            key={index}
-            className="bg-slate-100 w-full flex justify-between p-4 rounded-md "
-          >
-            <div>
-              <h1 className="text-2xl font-bold">{event.name}</h1>
-              <p>{event.description}</p>
-            </div>
+          <Link key={index} href={`/events/${event?.slug}`}>
+            <div className="bg-slate-100 w-full flex justify-between p-4 rounded-md ">
+              <div>
+                <h1 className="text-2xl font-bold">{event.name}</h1>
+                <p>{event.description}</p>
+              </div>
 
-            <div className="flex gap-4">
-              <p>{`Identifier: ${event?.slug}`}</p>
-              <p>{handleDateDefaultValue(event.startTime)}</p>
+              <div className="flex gap-4">
+                <p>{`Identifier: ${event?.slug}`}</p>
+                <p>{handleDateDefaultValue(event.startTime)}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
