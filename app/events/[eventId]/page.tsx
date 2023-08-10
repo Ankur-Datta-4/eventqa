@@ -15,41 +15,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import useDiscussions from "@/lib/hooks/use-discussion";
 import useEvent from "@/lib/hooks/use-event";
-import { handleDateDefaultValue } from "@/lib/utils";
-import { Share1Icon } from "@radix-ui/react-icons";
+import { handleDateDefaultValue, handleNiceDate } from "@/lib/utils";
+import { ChevronLeftIcon, Share1Icon } from "@radix-ui/react-icons";
 import axios from "axios";
+import Link from "next/link";
 import { useState } from "react";
 
-const questions = [
-  {
-    id: 1,
-    title: "What is the event about?",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    userName: "John Doe",
-    createdAt: new Date(),
-  },
-  {
-    id: 2,
-    title: "What is the event about?",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    userName: "John Doe",
-    createdAt: new Date(),
-  },
-  {
-    id: 3,
-    title: "What is the event about?",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    userName: "John Doe",
-    createdAt: new Date(),
-  },
-  {
-    id: 4,
-    title: "What is the event about?",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-    userName: "John Doe",
-    createdAt: new Date(),
-  },
-];
 export default function EventPage({
   params: { eventId },
 }: {
@@ -79,7 +50,13 @@ export default function EventPage({
       });
   };
   if (isLoading || isThreadLoading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-screen w-full">
+        <div className="flex items-center justify-center">
+          <h1 className="text-2xl">Loading..</h1>
+        </div>
+      </div>
+    );
   }
   if (isError || isThreadError) {
     console.log(isError);
@@ -88,14 +65,22 @@ export default function EventPage({
   return (
     <div className="min-h-screen w-full">
       <div className="flex flex-col p-8 md:p-12">
-        <h1 className="text-3xl font-bold my-8">{event?.name}</h1>
+        <div className="flex items-center gap-4">
+          <Link href={`/events`}>
+            <Button variant={"ghost"}>
+              <ChevronLeftIcon className="h-5 w-5" />
+            </Button>
+          </Link>
+
+          <h1 className="text-3xl font-bold my-8">{event?.name}</h1>
+        </div>
 
         <div className="flex gap-4 my-4 items-center">
           <Button>
             <Share1Icon />
           </Button>
           <Button variant={"secondary"}>
-            {`At ${handleDateDefaultValue(event?.startTime)}`}
+            {`At ${handleNiceDate(event?.startTime)}`}
           </Button>
           <Button
             variant={"secondary"}
@@ -147,7 +132,7 @@ export default function EventPage({
             </Dialog>
           </div>
 
-          <div className="mt-6 flex flex-col gap-4 bg-slate-50">
+          <div className="mt-6 flex flex-col gap-4 ">
             {threads?.length === 0 && (
               <div className="text-2xl font-light">No discussions yet</div>
             )}
@@ -156,12 +141,13 @@ export default function EventPage({
                 key={`q-${index}`}
                 className="p-4 rounded-md flex items-center justify-between bg-slate-100"
               >
-                <div className="flex flex-col">
+                <div className="flex flex-col max-w-7xl">
                   <h2 className="text-xl font-semibold">{item?.title}</h2>
-                  <div>{item?.description}</div>
+                  <div className="">{item?.description}</div>
                 </div>
-                <div>
+                <div className="flex flex-col gap-4">
                   <p>{`Asked at ${handleDateDefaultValue(item?.createdAt)}`}</p>
+                  <p>{`By ${item?.userName}`}</p>
                 </div>
               </div>
             ))}

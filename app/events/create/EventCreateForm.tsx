@@ -78,8 +78,8 @@ export default function EventCreateForm() {
     toast({
       title: "Event Created",
     });
+    form.reset();
   }
-  //   console.log(handleDateDefaultValue(form));
   return (
     <>
       <Form {...form}>
@@ -157,36 +157,38 @@ export default function EventCreateForm() {
               {/* {loading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />} */}
               Create Event
             </Button>
-            {showDialog && createdEvent && (
-              <Dialog>
-                <DialogTrigger>
-                  <Button>
-                    <Share1Icon />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogTitle>Event Identifier</DialogTitle>
-                  <div
-                    className="relative mt-3 w-full rounded-lg border border-slate-300 bg-slate-50 p-3 text-center text-slate-800"
-                    onClick={() => {
-                      navigator.clipboard.writeText(
-                        // @ts-ignore
-                        `${window.location.protocol}//${window.location.host}/events/${createdEvent?.slug}`
-                      );
-                      toast({
-                        title: "Copied to Clipboard",
-                      });
-                    }}
-                  >
-                    {/* @ts-ignore */}
-                    <p>{`${window.location.protocol}//${window.location.host}/events/${createdEvent?.slug}`}</p>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            )}
           </div>
         </form>
       </Form>
+      {showDialog && createdEvent && (
+        <div className="my-4">
+          <Dialog>
+            <DialogTrigger>
+              <Button>
+                <Share1Icon />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogTitle>Event Identifier</DialogTitle>
+              <div
+                className="relative mt-3 w-full rounded-lg border border-slate-300 bg-slate-50 p-3 text-center text-slate-800"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    // @ts-ignore
+                    `${window.location.protocol}//${window.location.host}/events/${createdEvent?.slug}`
+                  );
+                  toast({
+                    title: "Copied to Clipboard",
+                  });
+                }}
+              >
+                {/* @ts-ignore */}
+                <p>{`${window.location.protocol}//${window.location.host}/events/${createdEvent?.slug}`}</p>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+      )}
     </>
   );
 }

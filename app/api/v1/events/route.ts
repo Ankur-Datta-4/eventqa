@@ -22,3 +22,11 @@ export async function POST(request: Request) {
     event,
   });
 }
+
+export async function DELETE(request: Request, { params }: any) {
+  const event = await prisma.event.deleteMany({});
+
+  return NextResponse.json({
+    event,
+  });
+}

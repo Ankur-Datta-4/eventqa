@@ -15,3 +15,20 @@ export const handleDateDefaultValue = (xtime: any) => {
     .slice(0, -8);
   return retVal;
 };
+
+export const handleNiceDate = (xtime: any) => {
+  if (xtime[xtime.length - 1] !== "Z") {
+    return xtime;
+  }
+  let dxtime = new Date(xtime);
+  const options = {
+    year: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZoneName: "short",
+  };
+  // @ts-ignore
+  return dxtime.toLocaleString("en-GB", options);
+};

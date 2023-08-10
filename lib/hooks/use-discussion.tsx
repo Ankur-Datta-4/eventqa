@@ -8,7 +8,7 @@ export default function useDiscussions(eventSlug: string) {
   );
   console.log(data);
   return {
-    threads: data?.discussions || {},
+    threads: data?.discussions || [],
     isThreadLoading: isLoading,
     isThreadError: error,
     refetchThreads: mutate,

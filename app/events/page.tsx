@@ -9,7 +9,13 @@ export default function EventsPage() {
   const { events, isLoading, isError, mutate } = useEvents();
   console.log(events);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen w-full">
+        <div className="flex items-center justify-center">
+          <h1 className="text-2xl">Loading..</h1>
+        </div>
+      </div>
+    );
   }
   if (isError) {
     console.log(isError);
